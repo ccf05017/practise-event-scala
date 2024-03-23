@@ -1,4 +1,4 @@
-package actions
+package controllers.actions
 
 import commons.RequestAttributes
 

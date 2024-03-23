@@ -1,7 +1,8 @@
 package controllers
 
-import actions.TraceAction
 import commons.RequestAttributes
+import controllers.actions.TraceAction
+import controllers.filters.SessionKeys
 import play.api.mvc._
 
 import javax.inject._
