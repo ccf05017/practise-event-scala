@@ -1,6 +1,5 @@
 package controllers
 
-import actions.TraceAction
 import commons.RequestAttributes
 import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents}
 
