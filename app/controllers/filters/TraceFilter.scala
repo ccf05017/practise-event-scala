@@ -13,8 +13,8 @@ class TraceFilter @Inject()(implicit val ec: ExecutionContext) extends Essential
   def apply(nextFilter: EssentialAction) = EssentialAction { requestHeader =>
     val traceId = UUID.randomUUID().toString
 
-    nextFilter(requestHeader).map { header =>
-      header.addAttr(RequestAttributes.TraceId, traceId)
+    nextFilter(requestHeader).map { result =>
+      result.addAttr(RequestAttributes.TraceId, traceId)
     }
   }
 }
