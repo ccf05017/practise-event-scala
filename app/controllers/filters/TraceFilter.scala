@@ -1,5 +1,6 @@
 package controllers.filters
 
+import commons.RequestAttributes
 import org.apache.pekko.stream.Materializer
 
 import javax.inject.Inject
@@ -12,8 +13,8 @@ class TraceFilter @Inject()(implicit val ec: ExecutionContext) extends Essential
   def apply(nextFilter: EssentialAction) = EssentialAction { requestHeader =>
     val traceId = UUID.randomUUID().toString
 
-    nextFilter(requestHeader).map { result =>
-      result.withSession(SessionKeys.TRACE_ID -> traceId)
+    nextFilter(requestHeader).map { header =>
+      header.addAttr(RequestAttributes.TraceId, traceId)
     }
   }
 }

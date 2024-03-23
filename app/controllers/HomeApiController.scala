@@ -10,7 +10,7 @@ import javax.inject.{Inject, Singleton}
 @Singleton class HomeApiController @Inject()(val controllerComponents: ControllerComponents, traceAction: TraceAction) extends BaseController {
 
   def index: Action[AnyContent] = traceAction { request =>
-    val traceId = request.session.get(SessionKeys.TRACE_ID).getOrElse("!!creating trace-id failed!!")
+    val traceId = request.attrs(RequestAttributes.TraceId)
 
     Ok(s"This is an example page. (trace_id = $traceId)")
   }
